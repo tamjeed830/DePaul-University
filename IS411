@@ -1,0 +1,115 @@
+[200~from math import pi
+from tkinter import *
+from tkinter import Tk, Label, PhotoImage
+from random import randint
+from tkinter import ttk
+
+
+root = Tk()
+root.geometry("800x700")
+
+
+
+# Change bg color to pink
+root.config(bg="pink")
+photo = PhotoImage(file='\\Users\\Mohammed Tamjeed\\OneDrive\\Pictures\\logo.png')
+peace = Label(master=root,image=photo,width=1500, height=90)  # width of label, in pixelsheight=180)  # height of label, in pixels
+peace.pack()
+
+
+# Define our images
+rock = PhotoImage(file='\\Users\\Mohammed Tamjeed\\Downloads\\rockk.png')
+paper = PhotoImage(file='\\Users\\Mohammed Tamjeed\\Downloads\\paper.png')
+scissors = PhotoImage(file='\\Users\\Mohammed Tamjeed\\Downloads\\scisscor345.png')
+
+
+# Add Images to a list
+image_list = [rock, paper, scissors]
+for items in image_list:
+	print(image_list)
+# while image_list in range():
+# 	break
+
+# Pick random number between 0 and 2
+pick_number = randint(0,2)
+
+
+
+# Throw up an image when the program starts
+image_label = Label(root, image=image_list[pick_number], bd=0)
+image_label.pack(pady=50)
+
+
+# Create Spin Function
+def spin():
+	# Pick random numnber
+	pick_number = randint(0,2)
+	# Show image
+	image_label.config(image=image_list[pick_number])
+
+	# 0 = Rock
+	# 1 = Paper
+	# 2 = Scissors
+
+
+# Convert Dropdown choice to a number
+	if user_choice.get() == "Rock":
+		user_choice_value = 0
+	elif user_choice.get() == "Paper":
+		user_choice_value = 1
+	elif user_choice.get() == "Scissors":
+		user_choice_value = 2
+
+
+
+
+# if user picks ROCK
+
+	if user_choice_value == 0: #Rock
+		if pick_number == 0:
+			win_lose_label.config(text="It's A Tie! Spin Again...")
+		elif pick_number == 1: # Paper
+			win_lose_label.config(text="Paper Cover Rock! You Lose...")
+		elif pick_number == 2: # Scissors
+			win_lose_label.config(text="Rock Smashes Scissors!  You Win!!!")
+
+
+# If User Picks Paper
+	if user_choice_value == 1: # Paper
+		if pick_number == 1:
+			win_lose_label.config(text="It's A Tie! Spin Again...")
+		elif pick_number == 0: # Rock
+			win_lose_label.config(text="Paper Cover Rock! You Win!!!")
+		elif pick_number == 2: # Scissors
+			win_lose_label.config(text="Scissors Cuts Paper! You Lose...")
+
+# If User Pics Scissors
+	if user_choice_value == 2: # Scissors
+		if pick_number == 2:
+			win_lose_label.config(text="It's A Tie! Spin Again...")
+		elif pick_number == 0: # Rock
+			win_lose_label.config(text="Rock Smashes Scissors! You Lose...")
+		elif pick_number == 1: # Paper
+			win_lose_label.config(text="Scissors Cuts Paper! You Win!!!")
+        
+# Make our choice
+user_choice = ttk.Combobox(root, value=("Rock", "Paper", "Scissors"))
+user_choice.current(0)
+user_choice.pack(pady=20)
+
+spin_button = Button(root, text="Spin!", command=spin)
+spin_button.place(relx =0.45, rely = 0.8,relheight=0.06,relwidth=0.1)
+
+
+win_lose_label = Label(root, text="", font=("Helvetica", 18),bg ="white")
+win_lose_label.pack(pady=50)
+
+root.mainloop()
+
+
+
+
+
+
+
+
